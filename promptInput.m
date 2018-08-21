@@ -4,7 +4,8 @@ strs_dynamics  = {'1. FitzHugh Nagumo', '2. Henon Map', '3. Circadian Rhythm'};
 strs_dynamics_path = {'FitzHugh_Nagumo', 'Henon_Map', 'Circadian_Rhythm'};
 prmpt = 'Select dynamics from the list below:';
 [sd,vd] = listdlg('PromptString',prmpt,'SelectionMode','multi','ListString',strs_dynamics);
-dynamic_path = genpath(strcat('./', string(strs_dynamics_path(sd))));
+dynamic = string(strs_dynamics_path(sd));
+dynamic_path = genpath(strcat('./', dynamic));
 if (sd ~= 3)
     strs_networks  = {'1. Erdos-Renyi', '2. Scale-Free'};
     strs_networks_type = {'Erdos-Renyi', 'Scale-Free'};
@@ -21,5 +22,4 @@ else
     dimNum = 1;
 end
 A = createNetwork(varNum, string(strs_networks_type(sn)));
-dynamic = string(strs_dynamics_path(sd));
 dfuncDefined =  exist(strcat(dynamic_path,'/dfunc.m'),'file');

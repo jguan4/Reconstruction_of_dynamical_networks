@@ -3,10 +3,16 @@ clear
 addpath(genpath('./'))
 [A, varNum, dimNum, dynamic, dfuncDefined] = promptInput;
 ydot = @(t,y) ydot(A,t,y,dynamic);
-
+path = strcat('./', dynamic,'/Data');
+if ~exist(path, 'dir')
+    mkdir(path)
+end
 
 %% Initial constants setup
 % Set length of the trajectory here
+% times sets the total length of the trajectory,
+% ttime sets the length of trasient period you want to skip
+% the length of the trajectory in the end will be times-ttime
 times=3000;
 ttime=1000;
 
